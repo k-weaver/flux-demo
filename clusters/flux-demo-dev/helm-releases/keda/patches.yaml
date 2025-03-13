@@ -7,4 +7,4 @@
   value:
     - kind: ConfigMap
       name: keda-values
-      key: values.yaml
+      valuesKey: values.yaml

@@ -7,4 +7,4 @@
   value:
     - kind: ConfigMap
       name: external-dns-values
-      key: values.yaml
+      valuesKey: values.yaml

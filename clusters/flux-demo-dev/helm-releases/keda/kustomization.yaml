@@ -9,9 +9,11 @@ resources:
 
 configMapGenerator:
   - name: keda-values
-    namespace: kube-system
+    namespace: techops
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true
 
 patches:
   - target:

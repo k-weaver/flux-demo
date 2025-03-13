@@ -12,6 +12,8 @@ configMapGenerator:
     namespace: kube-system
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true
 
 patches:
   - target:
