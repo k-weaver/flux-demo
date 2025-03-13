@@ -1,0 +1,15 @@
+extends: default
+
+rules:
+  document-start: disable
+  comments-indentation: disable
+  indentation:
+    indent-sequences: true
+    level: error
+  line-length:
+    max: 80
+    level: warning
+
+ignore: |
+  .github/**
+  clusters/*/flux-system/**
