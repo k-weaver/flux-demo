@@ -1,0 +1,10 @@
+- op: replace
+  path: /spec/chart/spec/version
+  value: 3.3.1
+
+- op: add
+  path: /spec/valuesFrom
+  value:
+    - kind: ConfigMap
+      name: kyverno-values
+      valuesKey: values.yaml

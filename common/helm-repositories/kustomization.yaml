@@ -5,3 +5,4 @@ namespace: flux-system
 resources:
   - external-dns.yaml
   - keda.yaml
+  - kyverno.yaml
