@@ -5,7 +5,7 @@ metadata:
   name: external-dns
 namespace: kube-system
 resources:
-  - ../../../common/helm-release/external-dns.yaml
+  - ../../../../common/helm-release/external-dns.yaml
 
 configMapGenerator:
   - name: external-dns-values
