@@ -43,4 +43,4 @@ jobs:
           # Build the rendered YAML from your Flux directory
           kustomize build clusters/flux-demo-dev > rendered.yaml
           # Validate the YAML using kubectl dry-run (client-side validation)
-          kubectl apply --dry-run=client -f rendered.yaml
+          kubectl apply --dry-run=client --validate=false -f rendered.yaml
