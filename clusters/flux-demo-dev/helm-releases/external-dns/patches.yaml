@@ -1,0 +1,16 @@
+- op: add
+  path: /spec/dependsOn
+  value:
+    - kind: ConfigMap
+      name: external-dns-values
+
+- op: replace
+  path: /spec/chart/spec/version
+  value: 1.15.1
+
+- op: add
+  path: /spec/valuesFrom
+  value:
+    - configMapKeyRef:
+        name: external-dns-values
+        key: values.yaml

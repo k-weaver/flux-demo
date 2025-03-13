@@ -1,0 +1,20 @@
+# clusters/flux-demo-dev/keda.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: keda
+
+resources:
+  - ../../../common/helm-releases/keda.yaml
+
+configMapGenerator:
+  - name: keda-values
+    namespace: flux-system
+    files:
+      - values.yaml
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: keda
+    path: patches.yaml

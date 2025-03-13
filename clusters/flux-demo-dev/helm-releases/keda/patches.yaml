@@ -1,0 +1,16 @@
+- op: add
+  path: /spec/dependsOn
+  value:
+    - kind: ConfigMap
+      name: keda-values
+
+- op: replace
+  path: /spec/chart/spec/version
+  value: 2.16.1
+
+- op: add
+  path: /spec/valuesFrom
+  value:
+    - configMapKeyRef:
+        name: keda-values
+        key: values.yaml
