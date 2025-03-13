@@ -9,7 +9,7 @@ resources:
 
 configMapGenerator:
   - name: keda-values
-    namespace: flux-system
+    namespace: kube-system
     files:
       - values.yaml
 

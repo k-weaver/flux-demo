@@ -1,12 +1,9 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: keda
   namespace: techops
 spec:
-  dependsOn:
-    - kind: ConfigMap
-      name: replaced-by-patch
   interval: 5m
   chart:
     spec:

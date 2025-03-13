@@ -9,6 +9,7 @@ resources:
 
 configMapGenerator:
   - name: external-dns-values
+    namespace: kube-system
     files:
       - values.yaml
 
