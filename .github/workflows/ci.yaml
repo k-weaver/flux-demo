@@ -1,0 +1,45 @@
+name: Validate Manifests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install yamllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+
+      - name: Run YAML Linter
+        run: |
+          # Lint all YAML files in the repository
+          yamllint .
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      - name: Install Kustomize
+        run: |
+          # Download latest Kustomize release tarball for linux
+          curl -s "https://api.github.com/repos/kubernetes-sigs/kustomize/releases/latest" \
+            | grep "browser_download_url.*linux_amd64.tar.gz" \
+            | cut -d '"' -f 4 \
+            | wget -qi -
+          tar -zxvf kustomize_*_linux_amd64.tar.gz
+          sudo mv kustomize /usr/local/bin/
+
+      - name: Validate Manifests
+        run: |
+          # Build the rendered YAML from your Flux directory
+          kustomize build clusters/flux-demo-dev > rendered.yaml
+          # Validate the YAML using kubectl dry-run (client-side validation)
+          kubectl apply --dry-run=client -f rendered.yaml
