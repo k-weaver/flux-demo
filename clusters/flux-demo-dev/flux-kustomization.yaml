@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: './clusters/flux-demo-dev/helm-releases'
+  path: './clusters/flux-demo-dev'
   prune: true
   sourceRef:
     kind: GitRepository
