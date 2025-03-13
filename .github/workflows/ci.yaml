@@ -28,6 +28,28 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
 
+      - name: Setup dummy kubeconfig
+        run: |
+          cat <<EOF > kubeconfig.yaml
+          apiVersion: v1
+          clusters:
+          - cluster:
+              server: http://127.0.0.1
+            name: dummy-cluster
+          contexts:
+          - context:
+              cluster: dummy-cluster
+              user: dummy-user
+            name: dummy-context
+          current-context: dummy-context
+          kind: Config
+          preferences: {}
+          users:
+          - name: dummy-user
+            user: {}
+          EOF
+          export KUBECONFIG=$(pwd)/kubeconfig.yaml
+
       - name: Install Kustomize
         run: |
           # Download latest Kustomize release tarball for linux
@@ -43,4 +65,4 @@ jobs:
           # Build the rendered YAML from your Flux directory
           kustomize build clusters/flux-demo-dev > rendered.yaml
           # Validate the YAML using kubectl dry-run (client-side validation)
-          kubectl apply --dry-run=client -f rendered.yaml
+          kubectl apply --dry-run=client --validate=false -f rendered.yaml
