@@ -5,7 +5,7 @@ metadata:
   name: keda
 
 resources:
-  - ../../../common/helm-releases/keda.yaml
+  - ../../../common/helm-release/keda.yaml
 
 configMapGenerator:
   - name: keda-values
