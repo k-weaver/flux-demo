@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - helm-charts/external-dns/external-dns.yaml
+  - helm-charts/cert-manager/cert-manager.yaml
+
+configMapGenerator:
+  - name: external-dns-values
+    files:
+      - helm-release-values/external-dns.values.yaml
+  - name: cert-manager-values
+    files:
+      - helm-release-values/cert-manager.values.yaml
+
+namespace: flux-system

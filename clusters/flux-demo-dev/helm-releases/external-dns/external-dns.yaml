@@ -1,0 +1,16 @@
+# clusters/flux-demo-dev/external-dns.yaml
+
+namespace: kube-system
+resources:
+  - ../../../common/helm-releases/external-dns.yaml
+
+configMapGenerator:
+  - name: external-dns-values
+    files:
+      - values.yaml
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: external-dns
+    path: patches.yaml

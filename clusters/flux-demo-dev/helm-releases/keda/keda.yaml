@@ -1,0 +1,15 @@
+# clusters/flux-demo-dev/keda.yaml
+resources:
+  - ../../../common/helm-releases/keda.yaml
+
+configMapGenerator:
+  - name: keda-values
+    namespace: flux-system
+    files:
+      - values.yaml
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: keda
+    path: patches.yaml
