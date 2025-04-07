@@ -7,6 +7,7 @@ Demonstrates how to get flux up and running quickly with KIND cluster.
 Create the cluster:
 
 ```bash
+# kind config can be found in /setup/kind-config.yaml
 kind create cluster --wait 5m --name flux-dev --config kind-config.yaml
 ```
 
