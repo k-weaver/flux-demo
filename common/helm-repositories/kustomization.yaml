@@ -5,4 +5,4 @@ namespace: flux-system
 resources:
   - external-dns.yaml
   - keda.yaml
-  - flux-ui.yaml
+  - headlamp.yaml

@@ -6,8 +6,8 @@
   path: /spec/valuesFrom
   value:
     - kind: ConfigMap
-      name: flux-ui-values
+      name: headlamp-values
       valuesKey: common.values.yaml
     - kind: ConfigMap
-      name: flux-ui-values
+      name: headlamp-values
       valuesKey: values.yaml
