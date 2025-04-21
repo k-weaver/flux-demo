@@ -1,0 +1,23 @@
+# clusters/flux-demo-dev/external-dns.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: flux-ui
+namespace: kube-system
+resources:
+  - ../../../../common/helm-release/headlamp-ui
+
+configMapGenerator:
+  - name: flux-ui-values
+    namespace: kube-system
+    files:
+      - ../../../../common/helm-release/headlamp-ui/common.values.yaml
+      - values.yaml
+    options:
+      disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: flux-ui
+    path: patches.yaml
