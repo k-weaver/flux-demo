@@ -5,3 +5,11 @@ resources:
   - ../../common/namespaces
   - helm-releases
   - ../../common/helm-repositories
+
+commonLabels:
+  team: k8s-techops
+  environment: flux-dev
+  managed-by: flux
+  region: local
+  cluster: kind-flux-dev
+  project: flux-demo

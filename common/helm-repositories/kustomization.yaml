@@ -6,3 +6,4 @@ resources:
   - external-dns.yaml
   - keda.yaml
   - capacitor.yaml
+  - sample-app.yaml

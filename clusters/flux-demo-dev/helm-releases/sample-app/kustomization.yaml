@@ -1,0 +1,22 @@
+# clusters/flux-demo-dev/keda.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: sample-app
+
+resources:
+  - ../../../../common/helm-release/sample-app
+
+configMapGenerator:
+  - name: sample-app-values
+    namespace: sample-app
+    files:
+      - values.yaml
+    options:
+      disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: sample-app
+    path: patches.yaml

@@ -1,13 +1,10 @@
 - op: replace
   path: /spec/chart/spec/version
-  value: 0.30.1
+  value: 0.1.0
 
 - op: add
   path: /spec/valuesFrom
   value:
     - kind: ConfigMap
-      name: headlamp-values
-      valuesKey: common.values.yaml
-    - kind: ConfigMap
-      name: headlamp-values
+      name: sample-app-values
       valuesKey: values.yaml

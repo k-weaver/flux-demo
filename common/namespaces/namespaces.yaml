@@ -9,3 +9,7 @@ items:
     kind: Namespace
     metadata:
       name: metrics
+  - apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: sample-app
