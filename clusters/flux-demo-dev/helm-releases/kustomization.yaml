@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - external-dns
   - keda
-  - capacitor
+  #- capacitor
