@@ -13,4 +13,4 @@
   path: /spec/dependsOn
   value:
     - name: external-dns
-      namespace: flux-system
+      namespace: kube-system

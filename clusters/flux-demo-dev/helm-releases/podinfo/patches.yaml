@@ -13,4 +13,4 @@
   path: /spec/dependsOn
   value:
     - name: nginx-ingress
-      namespace: flux-system
+      namespace: kube-system
