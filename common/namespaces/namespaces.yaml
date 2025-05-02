@@ -13,3 +13,7 @@ items:
     kind: Namespace
     metadata:
       name: sample-app
+  - apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: podinfo
