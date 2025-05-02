@@ -8,3 +8,9 @@
     - kind: ConfigMap
       name: podinfo-values
       valuesKey: values.yaml
+
+- op: add
+  path: /spec/dependsOn
+  value:
+    - name: nginx-ingress
+      namespace: flux-system
