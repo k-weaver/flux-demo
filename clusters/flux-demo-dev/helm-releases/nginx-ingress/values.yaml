@@ -1,0 +1,6 @@
+controller:
+  watchIngressWithoutClass: true
+  service:
+    type: NodePort
+    httpPort:
+      nodePort: 30005
