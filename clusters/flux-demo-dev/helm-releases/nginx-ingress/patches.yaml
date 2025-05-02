@@ -8,3 +8,9 @@
     - kind: ConfigMap
       name: nginx-ingress-values
       valuesKey: values.yaml
+
+- op: add
+  path: /spec/dependsOn
+  value:
+    - name: external-dns
+      namespace: flux-system
