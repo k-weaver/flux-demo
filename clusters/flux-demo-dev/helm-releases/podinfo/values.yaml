@@ -3,3 +3,19 @@ service:
   nodePort: 30001
   externalPort: 80
   httpPort: 9898
+
+ingress:
+  enabled: true
+  className: 'nginx'
+  additionalLabels: {}
+  hosts:
+    - host: podinfo.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: podinfo
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
