@@ -4,6 +4,9 @@ controller:
   watchIngressWithoutClass: true
   service:
     type: NodePort
-    nodePorts:
-      http: 30080
-      https: 30443
+    httpPort:
+      nodePort: 30080
+      servicePort: 80
+    httpsPort:
+      nodePort: 30443
+      servicePort: 443
