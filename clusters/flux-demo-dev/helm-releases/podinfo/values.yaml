@@ -10,4 +10,5 @@ ingress:
   hosts:
     - host: podinfo.local
       paths:
-        - /
+        - path: /
+          pathType: Prefix
