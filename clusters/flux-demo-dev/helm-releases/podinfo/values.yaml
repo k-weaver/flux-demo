@@ -1,6 +1,6 @@
 service:
   type: NodePort
-  nodePort: 30001
+  nodePort: 30080
   externalPort: 80
   httpPort: 9898
 
