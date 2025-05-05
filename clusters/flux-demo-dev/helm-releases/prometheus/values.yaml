@@ -1,0 +1,5 @@
+server:
+  service:
+    enabled: true
+    type: NodePort
+    nodePort: 30010

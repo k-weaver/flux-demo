@@ -1,0 +1,10 @@
+- op: replace
+  path: /spec/chart/spec/version
+  value: 27.11.0
+
+- op: add
+  path: /spec/valuesFrom
+  value:
+    - kind: ConfigMap
+      name: prometheus-values
+      valuesKey: values.yaml
