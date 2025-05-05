@@ -1,5 +1,5 @@
 controller:
-  kind: Deployment
+  kind: deployment
   replicaCount: 1
   watchIngressWithoutClass: true
   service:
