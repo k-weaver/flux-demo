@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus-adapter
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: prometheus-adapter
+      version: ''
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus
+        namespace: flux-system
+  values:
+    # Inline environment-specific values can be provided here

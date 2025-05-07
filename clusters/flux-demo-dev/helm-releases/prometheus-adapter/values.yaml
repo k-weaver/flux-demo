@@ -1,0 +1,14 @@
+prometheus:
+  url: http://prometheus-server.kube-system.svc.cluster.local
+rules:
+  default: true
+  external:
+    - seriesQuery: 'nginx_ingress_nginx_connections_active'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+      name:
+        matches: 'nginx_ingress_nginx_connections_active'
+        as: 'nginx_ingress_connections'
+      metricsQuery: 'sum(nginx_ingress_nginx_connections_active) by (namespace)'

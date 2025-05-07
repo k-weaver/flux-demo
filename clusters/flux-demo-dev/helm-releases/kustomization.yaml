@@ -9,3 +9,4 @@ resources:
   - podinfo
   - nginx-ingress
   - prometheus
+  - prometheus-adapter
