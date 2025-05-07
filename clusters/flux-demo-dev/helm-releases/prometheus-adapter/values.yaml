@@ -1,5 +1,6 @@
 prometheus:
   url: http://prometheus-server.kube-system.svc.cluster.local
+  port: 80
 rules:
   default: true
   external:
