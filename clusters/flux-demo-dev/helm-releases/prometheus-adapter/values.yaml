@@ -4,6 +4,7 @@ prometheus:
 logLevel: 6
 rules:
   default: false
+  external: []
   custom:
     - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active"}'
       resources:
