@@ -19,5 +19,5 @@ configMapGenerator:
 patches:
   - target:
       kind: HelmRelease
-      name: prometheus
+      name: prometheus-adapter
     path: patches.yaml
