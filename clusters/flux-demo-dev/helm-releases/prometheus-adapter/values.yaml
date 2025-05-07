@@ -4,7 +4,7 @@ prometheus:
 rules:
   default: true
   external:
-    - seriesQuery: 'nginx_ingress_nginx_connections_active'
+    - seriesQuery: 'nginx_ingress_nginx_connections_active{namespace!="",pod!=""}'
       resources:
         overrides:
           namespace:
