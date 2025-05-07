@@ -4,14 +4,13 @@ prometheus:
 logLevel: 6
 rules:
   default: false
-  external:
-    # - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active",namespace!="",pod!=""}'
-    #   name:
-    #     matches: 'nginx_ingress_nginx_connections_active'
-    #     as: 'nginx_ingress_connections'
-    #   metricsQuery: 'sum(nginx_ingress_nginx_connections_active) by (namespace)'
-    - seriesQuery: '{__name__="up"}'
+  custom:
+    - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active"}'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
       name:
-        matches: 'up'
-        as: 'up_metric'
-      metricsQuery: 'sum(up)'
+        matches: 'nginx_ingress_nginx_connections_active'
+        as: 'nginx_ingress_connections'
+      metricsQuery: 'sum(nginx_ingress_nginx_connections_active) by (namespace)'
