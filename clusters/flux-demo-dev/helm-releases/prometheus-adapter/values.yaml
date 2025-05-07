@@ -3,14 +3,15 @@ prometheus:
   port: 80
 logLevel: 6
 rules:
-  default: true
+  default: false
   external:
-    - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active",namespace!="",pod!=""}'
-      resources:
-        overrides:
-          namespace:
-            resource: namespace
+    # - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active",namespace!="",pod!=""}'
+    #   name:
+    #     matches: 'nginx_ingress_nginx_connections_active'
+    #     as: 'nginx_ingress_connections'
+    #   metricsQuery: 'sum(nginx_ingress_nginx_connections_active) by (namespace)'
+    - seriesQuery: '{__name__="up"}'
       name:
-        matches: 'nginx_ingress_nginx_connections_active'
-        as: 'nginx_ingress_connections'
-      metricsQuery: 'sum(nginx_ingress_nginx_connections_active) by (namespace)'
+        matches: 'up'
+        as: 'up_metric'
+      metricsQuery: 'sum(up)'
