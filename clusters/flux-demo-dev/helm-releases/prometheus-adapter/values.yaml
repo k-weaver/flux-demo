@@ -1,7 +1,7 @@
 prometheus:
   url: http://prometheus-server.kube-system.svc.cluster.local
   port: 80
-logLevel: debug
+logLevel: 6
 rules:
   default: true
   external:
