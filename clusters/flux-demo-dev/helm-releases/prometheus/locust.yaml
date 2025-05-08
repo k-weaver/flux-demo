@@ -17,21 +17,35 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: locust
+  name: locust-master
+  labels:
+    name: locust-master
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: locust
+      app: locust-master
   template:
     metadata:
       labels:
-        app: locust
+        app: locust-master
     spec:
       containers:
-        - name: locust
+        - name: locust-master
           image: locustio/locust
+          args:
+            - --master
+            - --host=http://nginx-ingress-controller.kube-system.svc.cluster.local
           ports:
-            - containerPort: 8089
+            - name: loc-master-web
+              containerPort: 8089
+              protocol: TCP
+            - name: loc-master-p1
+              containerPort: 5557
+              protocol: TCP
+            - name: loc-master-p2
+              containerPort: 5558
+              protocol: TCP
           volumeMounts:
             - mountPath: /home/locust
               name: locust-script
@@ -40,18 +54,72 @@ spec:
           configMap:
             name: locust-script
 ---
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: locust
+  name: locust-worker
+  labels:
+    name: locust-worker
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      containers:
+        - name: locust-worker
+          image: locustio/locust
+          args:
+            - --worker
+            - --master-host=locust-master
+          volumeMounts:
+            - mountPath: /home/locust
+              name: locust-script
+      volumes:
+        - name: locust-script
+          configMap:
+            name: locust-script
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: locust-master
+  labels:
+    app: locust-master
+spec:
+  ports:
+    - port: 5557
+      targetPort: loc-master-p1
+      protocol: TCP
+      name: loc-master-p1
+    - port: 5558
+      targetPort: loc-master-p2
+      protocol: TCP
+      name: loc-master-p2
+  selector:
+    app: locust-master
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: locust-master-ui
+  labels:
+    app: locust-master
 spec:
   ports:
     - port: 8089
-      targetPort: 8089
-      nodePort: 30015
+      targetPort: loc-master-web
+      protocol: TCP
+      name: loc-master-web
+      nodePort: 30627
   selector:
-    app: locust
-  type: LoadBalancer
+    app: locust-master
+  type: NodePort
 ---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
@@ -104,9 +172,9 @@ spec:
   maxReplicas: 20
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 30
-    scaleDown:
       stabilizationWindowSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 180
   metrics:
     - type: Resource
       resource:
@@ -114,3 +182,59 @@ spec:
         target:
           type: Utilization
           averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    - type: Object
+      object:
+        describedObject:
+          apiVersion: v1
+          kind: Namespace
+          name: kube-system
+        metric:
+          name: nginx_ingress_connections
+        target:
+          type: Value
+          value: 2700
+---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: locust
+# spec:
+#   selector:
+#     matchLabels:
+#       app: locust
+#   template:
+#     metadata:
+#       labels:
+#         app: locust
+#     spec:
+#       containers:
+#         - name: locust
+#           image: locustio/locust
+#           ports:
+#             - containerPort: 8089
+#           volumeMounts:
+#             - mountPath: /home/locust
+#               name: locust-script
+#       volumes:
+#         - name: locust-script
+#           configMap:
+#             name: locust-script
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: locust
+# spec:
+#   ports:
+#     - port: 8089
+#       targetPort: 8089
+#       nodePort: 30015
+#   selector:
+#     app: locust
+#   type: LoadBalancer
