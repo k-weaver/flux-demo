@@ -1,5 +1,2 @@
-service:
-  type: LoadBalancer
-  nodePort: 30001
-  externalPort: 80
-  httpPort: 9898
+image:
+  tag: ''
