@@ -10,3 +10,4 @@ resources:
   - podinfo.yaml
   - nginx-ingress.yaml
   - prometheus.yaml
+  - node-local-dns.yaml

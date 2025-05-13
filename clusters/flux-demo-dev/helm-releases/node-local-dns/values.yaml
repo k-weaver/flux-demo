@@ -1,0 +1,9 @@
+securityContext:
+  privileged: false
+podSecurityContext:
+  fsGroup: 1001
+  runAsGroup: 1001
+  runAsUser: 1001
+  capabilities:
+    add:
+      - NET_ADMIN
