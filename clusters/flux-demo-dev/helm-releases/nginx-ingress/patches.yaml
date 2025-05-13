@@ -1,16 +1,16 @@
 - op: replace
   path: /spec/chart/spec/version
-  value: 6.8.0
+  value: 2.1.0
 
 - op: add
   path: /spec/valuesFrom
   value:
     - kind: ConfigMap
-      name: podinfo-values
+      name: nginx-ingress-values
       valuesKey: values.yaml
 
 - op: add
   path: /spec/dependsOn
   value:
-    - name: nginx-ingress
+    - name: external-dns
       namespace: kube-system

@@ -8,3 +8,5 @@ resources:
   - capacitor.yaml
   - sample-app.yaml
   - podinfo.yaml
+  - nginx-ingress.yaml
+  - prometheus.yaml

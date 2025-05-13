@@ -1,2 +1,13 @@
-image:
-  tag: ''
+service:
+  type: NodePort
+  externalPort: 80
+  httpPort: 9898
+
+ingress:
+  enabled: true
+  className: 'nginx'
+  hosts:
+    - host: podinfo.local
+      paths:
+        - path: /
+          pathType: Prefix

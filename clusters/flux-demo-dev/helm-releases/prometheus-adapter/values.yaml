@@ -1,0 +1,17 @@
+prometheus:
+  url: http://prometheus-server.kube-system.svc.cluster.local
+  port: 80
+logLevel: 4
+rules:
+  default: false
+  external: []
+  custom:
+    - seriesQuery: '{__name__="nginx_ingress_nginx_connections_active"}'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+      name:
+        matches: 'nginx_ingress_nginx_connections_active'
+        as: 'nginx_ingress_connections'
+      metricsQuery: 'avg(nginx_ingress_nginx_connections_active) by (namespace)'

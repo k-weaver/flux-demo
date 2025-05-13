@@ -1,0 +1,23 @@
+# clusters/flux-demo-dev/keda.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: prometheus-adapter
+  namespace: kube-system
+
+resources:
+  - ../../../../common/helm-release/prometheus-adapter
+
+configMapGenerator:
+  - name: prometheus-adapter-values
+    namespace: kube-system
+    files:
+      - values.yaml
+    options:
+      disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: prometheus-adapter
+    path: patches.yaml

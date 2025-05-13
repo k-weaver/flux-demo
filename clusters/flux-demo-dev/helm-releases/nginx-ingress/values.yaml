@@ -1,0 +1,16 @@
+controller:
+  kind: deployment
+  replicaCount: 1
+  watchIngressWithoutClass: true
+  service:
+    type: NodePort
+    httpPort:
+      nodePort: 30080
+      servicePort: 80
+    httpsPort:
+      nodePort: 30443
+      servicePort: 443
+  resources:
+    requests:
+      cpu: 1
+      memory: 256Mi
