@@ -3,3 +3,23 @@ server:
     enabled: true
     type: NodePort
     nodePort: 30010
+extraScrapeConfigs:
+  # DNS metrics
+  - job_name: 'node-local-dns'
+    metrics_path: /metrics
+    kubernetes_sd_configs:
+      - role: endpoints
+    relabel_configs:
+      - source_labels:
+          [__meta_kubernetes_namespace, __meta_kubernetes_service_name]
+        action: keep
+        regex: kube-system;node-local-dns
+  - job_name: 'coredns'
+    metrics_path: /metrics
+    kubernetes_sd_configs:
+      - role: endpoints
+    relabel_configs:
+      - source_labels:
+          [__meta_kubernetes_namespace, __meta_kubernetes_service_name]
+        action: keep
+        regex: kube-system;coredns
