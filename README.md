@@ -20,7 +20,7 @@ export GITHUB_TOKEN=<my-token>
 Bootstrap Flux:
 
 ```bash
-flux bootstrap github \                                                                                                                               -╯
+flux bootstrap github \
   --owner="k-weaver" \
   --repository="flux-demo" \
   --branch="main" \

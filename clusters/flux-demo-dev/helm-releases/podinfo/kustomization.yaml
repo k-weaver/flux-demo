@@ -1,0 +1,22 @@
+# clusters/flux-demo-dev/external-dns.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: podinfo
+namespace: podinfo
+resources:
+  - ../../../../common/helm-release/podinfo
+
+configMapGenerator:
+  - name: podinfo-values
+    namespace: podinfo
+    files:
+      - values.yaml
+    options:
+      disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: podinfo
+    path: patches.yaml
