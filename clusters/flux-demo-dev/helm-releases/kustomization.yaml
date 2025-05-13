@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - external-dns
   - keda
-  #- capacitor
+  - capacitor
   - sample-app
   - podinfo
   - nginx-ingress
