@@ -10,3 +10,4 @@ resources:
   - nginx-ingress
   - prometheus
   - prometheus-adapter
+  - node-local-dns
