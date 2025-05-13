@@ -3,8 +3,7 @@ server:
     enabled: true
     type: NodePort
     nodePort: 30010
-extraScrapeConfigs:
-  # DNS metrics
+extraScrapeConfigs: |
   - job_name: 'node-local-dns'
     metrics_path: /metrics
     kubernetes_sd_configs:
