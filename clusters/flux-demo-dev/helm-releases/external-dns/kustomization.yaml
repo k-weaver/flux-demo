@@ -5,18 +5,15 @@ metadata:
   name: external-dns
 namespace: kube-system
 resources:
-  - ../../../../common/helm-release/external-dns
+  - github.com/k-weaver/flux-shared//helm-release/external-dns?ref=main
+
+patches:
+  - path: patch-values.yaml
 
 configMapGenerator:
-  - name: external-dns-values
+  - name: external-dns-value-overrides
     namespace: kube-system
     files:
       - values.yaml
     options:
       disableNameSuffixHash: true
-
-patches:
-  - target:
-      kind: HelmRelease
-      name: external-dns
-    path: patches.yaml
