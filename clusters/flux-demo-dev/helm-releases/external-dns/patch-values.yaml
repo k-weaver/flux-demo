@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       version: 1.16.2
-  valuesFrom:
-    - configMapKeyRef:
-        name: external-dns-dev-overrides
-        key: values.yaml
+  # valuesFrom:
+  #   - configMapKeyRef:
+  #       name: external-dns-dev-overrides
+  #       key: values.yaml
