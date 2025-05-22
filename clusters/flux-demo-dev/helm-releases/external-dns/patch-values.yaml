@@ -15,4 +15,3 @@ spec:
     - configMapKeyRef:
         name: external-dns-override-values
         key: override.values.yaml
-        namespace: kube-system
