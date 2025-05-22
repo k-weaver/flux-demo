@@ -2,12 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../common
-  - helm-releases
-# commonLabels:
-#   team: k8s-techops
-#   environment: flux-dev
-#   managed-by: flux
-#   region: local
-#   cluster: kind-flux-dev
-#   project: flux-demo
+  - ../../common/flux-kustomization.yaml
+  - helm-releases/flux-kustomization.yaml

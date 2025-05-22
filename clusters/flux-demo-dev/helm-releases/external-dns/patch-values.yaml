@@ -9,5 +9,8 @@ spec:
       version: 1.16.1
   valuesFrom:
     - kind: ConfigMap
+      name: external-dns-common-values
+      valuesKey: common.values.yaml
+    - kind: ConfigMap
       name: external-dns-override-values
       valuesKey: override.values.yaml
