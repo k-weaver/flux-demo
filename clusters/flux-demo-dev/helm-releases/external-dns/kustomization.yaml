@@ -8,10 +8,10 @@ resources:
 
 patches:
   - path: patch-values.yaml
-# configMapGenerator:
-#   - name: external-dns-value-overrides
-#     namespace: kube-system
-#     files:
-#       - values.yaml
-#     options:
-#       disableNameSuffixHash: true
+configMapGenerator:
+  - name: external-dns-value-overrides
+    namespace: kube-system
+    files:
+      - override.values.yaml
+    options:
+      disableNameSuffixHash: true

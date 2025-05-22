@@ -2,11 +2,15 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: external-dns
+  namespace: kube-system
 spec:
   chart:
     spec:
       version: 1.16.2
-  # valuesFrom:
-  #   - configMapKeyRef:
-  #       name: external-dns-dev-overrides
-  #       key: values.yaml
+  valuesFrom:
+    - configMapKeyRef:
+        name: external-dns-common-values
+        key: common.values.yaml
+    - configMapKeyRef:
+        name: external-dns-dev-overrides
+        key: override.values.yaml
