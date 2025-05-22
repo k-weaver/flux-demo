@@ -9,5 +9,5 @@ spec:
       version: 1.16.2
   valuesFrom:
     - configMapKeyRef:
-        name: external-dns-override-values
-        key: override.values.yaml
+      name: external-dns-override-values
+      key: override.values.yaml
