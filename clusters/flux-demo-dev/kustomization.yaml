@@ -4,11 +4,10 @@ kind: Kustomization
 resources:
   - ../../common
   - helm-releases
-
-commonLabels:
-  team: k8s-techops
-  environment: flux-dev
-  managed-by: flux
-  region: local
-  cluster: kind-flux-dev
-  project: flux-demo
+# commonLabels:
+#   team: k8s-techops
+#   environment: flux-dev
+#   managed-by: flux
+#   region: local
+#   cluster: kind-flux-dev
+#   project: flux-demo

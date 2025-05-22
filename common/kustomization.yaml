@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
   - infra-shared-source.yaml
-  - namespaces.yaml
