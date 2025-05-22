@@ -8,6 +8,6 @@ spec:
     spec:
       version: 1.16.2
   valuesFrom:
-    - configMapKeyRef:
+    - kind: ConfigMap
       name: external-dns-override-values
-      key: override.values.yaml
+      valuesKey: override.values.yaml
