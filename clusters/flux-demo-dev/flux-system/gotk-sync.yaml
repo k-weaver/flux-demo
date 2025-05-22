@@ -33,8 +33,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  dependsOn:
-    - name: flux-system
   url: https://github.com/k-weaver/flux-shared
   ref:
     branch: main
