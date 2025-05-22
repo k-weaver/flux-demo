@@ -9,7 +9,7 @@ resources:
 patches:
   - path: patch-values.yaml
 configMapGenerator:
-  - name: external-dns-value-overrides
+  - name: external-dns-override-values
     namespace: kube-system
     files:
       - override.values.yaml

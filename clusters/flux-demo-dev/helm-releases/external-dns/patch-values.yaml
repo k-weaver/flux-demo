@@ -10,9 +10,9 @@ spec:
   valuesFrom:
     - configMapKeyRef:
         name: external-dns-common-values
-        key: common.values.yaml
         namespace: kube-system
+        key: common.values.yaml
     - configMapKeyRef:
-        name: external-dns-dev-overrides
+        name: external-dns-override-values
         key: override.values.yaml
         namespace: kube-system
