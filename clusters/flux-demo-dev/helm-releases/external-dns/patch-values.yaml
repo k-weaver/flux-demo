@@ -11,6 +11,8 @@ spec:
     - configMapKeyRef:
         name: external-dns-common-values
         key: common.values.yaml
+        namespace: kube-system
     - configMapKeyRef:
         name: external-dns-dev-overrides
         key: override.values.yaml
+        namespace: kube-system
